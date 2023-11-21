@@ -1,80 +1,99 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# CallUI - React Native Calling View Animation
 
-# Getting Started
+CallUI is a React Native application designed to showcase the power and versatility of the React Native Animation framework. With a focus on creating a seamless and visually appealing user interface for incoming calls, CallUI incorporates various animation techniques such as sequence, loop, and timing animations.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 1: Start the Metro Server
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+| ![Screenshot 2023-11-21 at 6.26.01 PM](ReadmeAssets/CallUI1.png) | ![Screenshot 2023-11-21 at 6.26.08 PM](ReadmeAssets/callUi2.png) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![Screenshot 2023-11-21 at 6.26.11 PM](ReadmeAssets/callUi3.png) | ![Screenshot 2023-11-21 at 6.26.20 PM](ReadmeAssets/callUi4.png) |
 
-To start Metro, run the following command from the _root_ of your React Native project:
 
-```bash
-# using npm
-npm start
 
-# OR using Yarn
-yarn start
+
+
+
+
+
+
+## Features
+
+- **Incoming Call Interface:** Enjoy a beautifully crafted UI for handling incoming calls, complete with smooth animations for an engaging user experience.
+- **Decline Call Animation:** The app provides an intuitive and visually pleasing animation for declining incoming calls.
+- **Call Timing Display:** Utilizing timers, CallUI dynamically displays the call duration, keeping users informed about the elapsed time during the call.
+- **System Blur Effect:** Enhance the visual aesthetics with the integration of the React Native Community Blur library, creating a sleek and modern system blur for a polished look.
+
+## Animation Techniques
+
+- **Sequence Animation:** Explore the seamless flow of animations with carefully choreographed sequences that enhance the overall user interface.
+- **Loop Animation:** Integrate looping animations to create dynamic and captivating effects, ensuring a visually engaging experience.
+- **Timing Animation:** Leverage timing animations to synchronize and display real-time information, such as call duration, providing users with valuable feedback.
+
+## Getting Started
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/DevVarsha/CallUI.git
+   cd callUi
+   ```
+
+2. **Install Dependencies:**
+
+   ```bash
+   yarn 
+   cd ios
+   pod install
+   ```
+
+3. **Run the Application:**
+
+   ```
+   eyarn android
+   # or
+   yarn ios
+   ```
+
+## Requirements
+
+- Node.js
+- npm or yarn
+- React Native CLI
+
+## Libraries Used
+
+- [React Native Animation](https://reactnative.dev/docs/animations)
+- [React Native Community Blur](https://github.com/react-native-community/react-native-blur)
+
+## Contributing
+
+Feel free to contribute to the project by submitting bug reports, feature requests, or even pull requests. Your feedback is valuable in enhancing the quality and functionality of CallUI.
+
+## License
+
+This project is licensed under the MIT License, allowing you to modify and distribute the app as per your requirements.
+
+```
+MIT License
+
+Copyright (c) 2023 Varsha Soni
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
-# CallUI
