@@ -7,8 +7,11 @@ import {
   Animated,
   PanResponder,
   SafeAreaView,
+  ImageBackground,
 } from 'react-native';
 import Scale from './Scale';
+import CallPicked from './CallPicked';
+import { BlurView } from "@react-native-community/blur";
 
 export default function App() {
   const pan = useRef(new Animated.ValueXY()).current;
@@ -22,7 +25,7 @@ export default function App() {
     onStartShouldSetPanResponder: () => true,
     onPanResponderMove: (event, gesture) => {
       if (isDragFinished == false) {
-        if (gesture.dy < 180 && gesture.dy > -180) {
+        if (gesture.dy < 160 && gesture.dy > -160) {
           pan.setValue({x: 0, y: gesture.dy});
         }
       }
@@ -33,27 +36,25 @@ export default function App() {
       }
       if (gesture.dy > 120) {
         setIsDragFinished(true);
-        setResponse('Picked');
+        setResponse('Declined');
         Animated.spring(
           pan,
           {
-            toValue: {x: 0, y: 180},
+            toValue: {x: 0, y: 160},
             useNativeDriver: false,
           }, // Back to zero
         ).start();
       } else if (gesture.dy < -120) {
         setIsDragFinished(true);
-        setResponse('Declined');
+        setResponse('Picked');
         Animated.spring(
           pan,
           {
-            toValue: {x: 0, y: -180},
+            toValue: {x: 0, y: -160},
             useNativeDriver: false,
           }, // Back to zero
         ).start();
       } else {
-        console.log('isDragFinished', isDragFinished);
-
         Animated.spring(
           pan,
           {
@@ -83,19 +84,20 @@ export default function App() {
   }
 
   const animateArrowColor = () => {
-    Animated.timing(arrowColor, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start(() => {
-      Animated.timing(arrowColor, {
-        toValue: 0,
-        duration: 1000,
-        useNativeDriver: false,
-      }).start(() => {
-        animateArrowColor();
-      });
-    });
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(arrowColor, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(arrowColor, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+      ]),
+    ).start();
   };
 
   const boxInterpolation = arrowColor.interpolate({
@@ -124,63 +126,87 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.mainView}>
-      <View style={{height: 400, alignItems: 'center'}}>
-        <Text style={styles.name}>Varsha soni</Text>
-        <Text style={styles.incoming}>incoming call...</Text>
-      </View>
-      <View
-        style={[
-          styles.bottomCircle,
-          {
-            backgroundColor: 'green',
-          },
-        ]}></View>
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        <Animated.Image
-          style={[
-            styles.arrow,
-            {
-              ...animatedStyle,
-              transform: [{rotate: '180deg'}],
-              marginBottom: 70,
-            },
-          ]}
-          source={require('./assets/down-arrow.png')}
-        />
-        <Animated.Image
-          {...panResponder.panHandlers}
-          style={[
-            pan.getLayout(),
-            styles.image,
-            {transform: [{translateY: imageTranslation}]},
-          ]}
-          source={require('./assets/phone.png')}
-        />
-        <Animated.Image
-          style={[styles.arrow, {...animatedStyle, marginTop: 70}]}
-          source={require('./assets/down-arrow.png')}
-        />
-      </View>
+    <View style={{flex:1}}>
+   
+      
+      <ImageBackground
+      style={{flex:1}}
+      resizeMode="cover"
+      source={require("./assets/Wallpaper.webp")}
+      >
+        <BlurView
+        style={styles.absolute}
+        blurType="light"
+        blurAmount={50}
+        reducedTransparencyFallbackColor="white"
+      >
+         {
+      response === "Picked" ? 
+<CallPicked />  :
+  <View style={styles.mainView}>
+  <View style={{height: 400, alignItems: 'center'}}>
+    <Text style={styles.name}>Varsha soni</Text>
+    <Text style={styles.incoming}>{response === "Declined" ? "Call ended..." : "incoming call..."}</Text>
+  </View>
+  <View
+    style={[
+      styles.bottomCircle,
+      {
+        backgroundColor: 'green',
+      },
+    ]}></View>
+  <View style={{flex: 1, justifyContent: 'center'}}>
+    <Animated.Image
+      style={[
+        styles.arrow,
+        {
+          ...animatedStyle,
+          transform: [{rotate: '180deg'}],
+          marginBottom: 50,
+        },
+      ]}
+      source={require('./assets/down-arrow.png')}
+    />
+    <Animated.Image
+      {...panResponder.panHandlers}
+      style={[
+        pan.getLayout(),
+        styles.image,
+        {transform: [{translateY: imageTranslation}]},
+      ]}
+      source={require('./assets/phone.png')}
+    />
+    <Animated.Image
+      style={[styles.arrow, {...animatedStyle, marginTop: 50}]}
+      source={require('./assets/down-arrow.png')}
+    />
+  </View>
 
-      <View
-        style={[
-          styles.bottomCircle,
-          {
-            backgroundColor: 'red',
-            position: 'relative',
-            zIndex: -99,
-          },
-        ]}></View>
-      <SafeAreaView />
+  <View
+    style={[
+      styles.bottomCircle,
+      {
+        backgroundColor: 'red',
+        position: 'relative',
+        zIndex: -99,
+      },
+    ]}></View>
+  <SafeAreaView />
+</View>
+    }
+    
+    </BlurView>
+    </ImageBackground>
+    
     </View>
+   
   );
 }
 
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: '#212325',
+    // backgroundColor: '#212325',
   },
   image: {
     alignSelf: 'center',
@@ -197,8 +223,6 @@ const styles = StyleSheet.create({
   bottomCircle: {
     height: Scale(60),
     width: Scale(60),
-    borderWidth: Scale(2),
-    borderColor: '#2b2c2e',
     borderRadius: Scale(70),
     alignSelf: 'center',
   },
@@ -214,4 +238,11 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     marginTop: 10,
   },
+  absolute: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  }
 });
